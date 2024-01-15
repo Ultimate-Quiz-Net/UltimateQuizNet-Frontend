@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { todos } from '../shared/data';
 import { v4 as uuidv4 } from 'uuid';
 import { FormWrapper } from '../shared/styled';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../axios/api';
 
 const QuizCreatePage = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
+        id: '',
         title: '',
         category: '퀴즈', // 베이스를 '퀴즈'로 설정
         detail: '',
         answerKey: '',
+        comments: '',
     });
     const formChangeHandler = (event) => {
         const { name, value } = event.target;
@@ -19,28 +21,33 @@ const QuizCreatePage = () => {
             [name]: value,
         }));
     }
-    const handleAddButtonClick = (event) => {
+    const handleAddButtonClick = async (event) => {
         event.preventDefault();
-        const newFormData = {
-            id: uuidv4(),
-            category: formData.category,
-            title: formData.title,
-            detail: formData.detail,
-            answerKey: formData.answerKey,
-        };
-        console.log(newFormData);
-        // 폼 데이터를 todos 배열에 추가
-        todos.push(newFormData);
+        try {
+            // title 상태를 사용하여 새로운 할 일 추가
+            await api.post("/quizzes", {
+                id: uuidv4(),
+                title: formData.title,
+                category: formData.category,
+                detail: formData.detail,
+                answerKey: formData.answerKey,
+                comments:  formData.comments,
+            });
+        } catch (error) {
+            console.error("에러 발생:", error);
+        }
 
         // 추가 후 폼 초기화
         setFormData({
+            id: '',
             title: '',
             category: '',
             detail: '',
             answerKey: '',
+            comments: '',
         });
         navigate("/home"); // 등록 후 게시판으로 이동
-        console.log(todos); // 확인용 로그
+        // console.log(todos); // 확인용 로그
     }
 
     return (
@@ -68,7 +75,7 @@ const QuizCreatePage = () => {
                     <input type="text" name="answerKey" value={formData.answerKey} onChange={formChangeHandler} />
                 </label>
                 <br />
-                <button type="submit">등록</button>
+                <button>등록</button>
             </form>
         </FormWrapper>
     );

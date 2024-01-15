@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import surf from "../images/QuizMainPage.png";
 
 export const FormWrapper = styled.div`
     max-width: 500px;
@@ -76,4 +77,26 @@ export const QuizDetailBoxStyle = styled.div`
             background-color: #0056b3;
         }
     }
+`;
+export const MainTextContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-image: linear-gradient(45deg, rgba(51, 43, 43, 0.75), rgba(20, 19, 20, 0.61)),
+                    url(${surf});
+  background-size: cover;
+  background-position: center;
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    font-size: 24px;
+    color: white;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
 `;
