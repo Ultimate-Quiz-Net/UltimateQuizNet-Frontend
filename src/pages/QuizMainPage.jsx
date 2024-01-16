@@ -11,7 +11,7 @@ function QuizMainPage() {
         const response = await api.get("/quizzes");
         console.log(response);
 
-        setTodos(response.data);
+        setQuizzes(response.data);
       } catch (error) {
         console.error("에러 발생:", error);
       }
