@@ -18,7 +18,7 @@ const Router = () => {
                         {/* 퀴즈 게시물 등록 페이지 */}
                         <Route path="/quizzes" element={<QuizCreatePage />} />
                         {/* 퀴즈 상세 페이지 */}
-                        <Route path="/quizzes/:id" element={<QuizDetailPage />} />
+                        <Route path="/quizzes/:quizId" element={<QuizDetailPage />} />
                     </Routes>
                 </Layout>
             </BrowserRouter>
