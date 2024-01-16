@@ -3,7 +3,7 @@ import * as St from "../components/style";
 import logo from "../assets/img/IMG_0286.png";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import api from "../api/api";
+import { api } from "../axios/api";
 
 function SignUp() {
   // 페이지 이동 사용 useNavigate 선언

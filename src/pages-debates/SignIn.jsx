@@ -2,7 +2,7 @@ import React from "react";
 import * as St from "../components/style";
 import logo from "../assets/img/IMG_0286.png";
 import { useNavigate } from "react-router-dom";
-import api from "../api/api";
+import { api } from "../axios/api";
 
 // import api from "../api/api";
 import useInput from "../hooks/useInput";
@@ -39,6 +39,10 @@ function SignIn() {
         console.log("error response 확인", error);
         const errorStatus = error.response.status;
         const errorMessage = error.response.errorMessage;
+
+        if (errorStatus === 400 || errorStatus === 401) {
+          alert(errorMessage);
+        }
       }
     }
   };

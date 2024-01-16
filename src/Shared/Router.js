@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Confirm from "../Pages/Confirm";
-import SignUp from "../Pages/SignUp";
-import SignIn from "../Pages/SignIn";
-import Main from "../Pages/Main";
-import DebatesMain from "../Pages/DebatesMain";
-import DebatesDetail from "../Pages/DebatesDetail";
+import Confirm from "../pages-debates/Confirm";
+import SignUp from "../pages-debates/SignUp";
+import SignIn from "../pages-debates/SignIn";
+import Main from "../pages-debates/Main";
+import DebatesMain from "../pages-debates/DebatesMain";
+import DebatesDetail from "../pages-debates/DebatesDetail";
 
 function Router() {
   return (
