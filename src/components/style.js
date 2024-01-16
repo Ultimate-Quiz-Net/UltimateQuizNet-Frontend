@@ -16,9 +16,19 @@ export const SignInWrapper = styled.section`
   background-size: cover;
 `;
 
-export const SignForm = styled.form`
+export const SignForm1 = styled.form`
   width: 400px;
   height: 500px;
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-left: 35%;
+  border-radius: 30px;
+`;
+
+export const SignForm2 = styled.form`
+  width: 400px;
+  height: 600px;
   padding: 40px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.5);
