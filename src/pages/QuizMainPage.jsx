@@ -33,7 +33,7 @@ function QuizMainPage() {
           .map(quiz => (
             <div key={quiz.quizId} className="col">
               <div className="card h-100">
-                <Link key={quiz.quizId} className="card-img-top" to={`/quizzes/${todo.id}`}>
+                <Link key={quiz.quizId} className="card-img-top" to={`/quizzes/${quiz.id}`}>
                   <img src={quiz.image} className="card-img-top" alt="Card image cap" />
                 </Link>
                 <div className="card-body">
