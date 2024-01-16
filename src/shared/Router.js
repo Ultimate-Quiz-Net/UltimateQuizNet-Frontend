@@ -1,10 +1,10 @@
 import React from 'react'
-import Layout from '../pages/Layout'
+import Layout from '../pages-quiz/Layout'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import QuizMainPage from '../pages/QuizMainPage';
-import Home from '../pages/Home';
-import QuizCreatePage from '../pages/QuizCreatePage';
-import QuizDetailPage from '../pages/QuizDetailPage';
+import QuizMainPage from '../pages-quiz/QuizMainPage';
+import Home from '../pages-quiz/Home';
+import QuizCreatePage from '../pages-quiz/QuizCreatePage';
+import QuizDetailPage from '../pages-quiz/QuizDetailPage';
 const Router = () => {
     return (
         <div>
