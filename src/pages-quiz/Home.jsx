@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MainTextContainer } from "../Shared/styled";
+import { MainTextContainer } from "../shared/styled";
 function Home() {
   const textContainerStyle = {
     zIndex: 1,

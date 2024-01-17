@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormWrapper } from '../Shared/styled';
+import { FormWrapper } from '../shared/styled';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../axios/api';
 
