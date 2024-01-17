@@ -3,10 +3,8 @@ import { FormWrapper } from "../shared/styled";
 import { useNavigate } from "react-router-dom";
 import { api } from "../axios/api";
 
-const QuizCreatePage = () => {
+const DebatesCreatePage = () => {
   const navigate = useNavigate();
-  const [imageSrc, setImageSrc] = useState(null);
-  const [imageBase64, setImageBase64] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -27,19 +25,13 @@ const QuizCreatePage = () => {
     // FormData 객체 생성
     const formDataToSend = new FormData();
 
-    // 이미지 파일 추가
-    formDataToSend.append("image", imageSrc);
-
     // 다른 폼 데이터 추가
     formDataToSend.append("title", formData.title);
     formDataToSend.append("content", formData.content);
 
-    // formDataToSend.append('category', formData.category);
-
     try {
-      console.log("imageSrc", imageSrc);
       console.log("formDataToSend", formDataToSend);
-      await api.post("/quizzes", formDataToSend, {
+      await api.post(`/quizzess/:quizid/debates`, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -49,8 +41,6 @@ const QuizCreatePage = () => {
         title: "",
         content: "",
       });
-      setImageSrc(null);
-      setImageBase64(null);
 
       navigate("/home");
     } catch (error) {
@@ -61,44 +51,9 @@ const QuizCreatePage = () => {
     }
   };
 
-  // 이미지 추가
-  const onChangeImg = (e) => {
-    e.preventDefault();
-
-    if (e.target.files) {
-      const uploadFile = e.target.files[0];
-      setImageSrc(uploadFile);
-
-      // 이미지 선택 시 바로 미리보기 생성
-      encodeFileToBase64(uploadFile);
-    }
-  };
-
-  // 이미지 미리보기
-  const encodeFileToBase64 = (fileBlob) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64String = reader.result;
-      setImageBase64(base64String);
-    };
-
-    reader.readAsDataURL(fileBlob);
-  };
-
   return (
     <FormWrapper>
       <form onSubmit={handleAddButtonClick}>
-        <label htmlFor="profile-upload" />
-        <input
-          type="file"
-          id="profile-upload"
-          accept="image/*"
-          onChange={onChangeImg}
-        />
-        <div className="preview">
-          {imageBase64 && <img src={imageBase64} alt="preview-img" />}
-        </div>
         <label>
           제목:
           <input
@@ -125,4 +80,4 @@ const QuizCreatePage = () => {
   );
 };
 
-export default QuizCreatePage;
+export default DebatesCreatePage;

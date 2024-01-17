@@ -32,7 +32,9 @@ function SignIn() {
         return;
       }
       const response = await api.post("/sign-in", userData);
-      Cookies.set("token", response.data.token);
+      const accessToken = response.data.token;
+      Cookies.set("token", accessToken);
+      console.log("response 확인", response);
       navigate("/");
     } catch (error) {
       if (error.response) {
