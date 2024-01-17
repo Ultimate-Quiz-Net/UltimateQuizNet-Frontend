@@ -20,7 +20,7 @@ function Confirm() {
       setShowAlert(false);
       navigate("/sign-in");
     }
-  }, []);
+  }, [token, showAlert, navigate]);
   return <div></div>;
 }
 

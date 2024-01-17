@@ -3,10 +3,9 @@ import * as St from "../components/style";
 import logo from "../assets/img/IMG_0286.png";
 import { useNavigate } from "react-router-dom";
 import { api } from "../axios/api";
-
-// import api from "../api/api";
 import useInput from "../hooks/useInput";
 import Cookies from "js-cookie";
+
 function SignIn() {
   // 페이지 이동 useNavigate 선언
   const navigate = useNavigate();
@@ -34,6 +33,7 @@ function SignIn() {
       }
       const response = await api.post("/sign-in", userData);
       Cookies.set("token", response.data.token);
+      navigate("/");
     } catch (error) {
       if (error.response) {
         console.log("error response 확인", error);
