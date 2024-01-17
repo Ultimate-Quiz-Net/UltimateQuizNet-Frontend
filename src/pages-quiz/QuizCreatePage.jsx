@@ -62,8 +62,6 @@ const QuizCreatePage = () => {
                 console.error("서버 응답 데이터:", error.response.data);
             }
         }
-
-
     };
 
 

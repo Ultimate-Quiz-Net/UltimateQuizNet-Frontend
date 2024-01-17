@@ -76,7 +76,7 @@ function QuizDetailPage() {
     const onCommentSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post(`/quizzes/${quizId}/quizComments `, {
+            const response = await api.post(`/quizzes/${quizId}/quizComments`, {
                 content: newComment,
             });
 
@@ -87,7 +87,32 @@ function QuizDetailPage() {
             console.error("댓글 작성 에러:", error);
         }
     };
+    // 댓글 삭제
+    const onCommentRemoveHandler = async (commentId) => {
+        try {
+            await api.delete(`/quizzes/${quizId}/quizComments/${commentId}`);
+            setComments(prevComments => prevComments.filter(comment => comment.commentId !== commentId));
+        } catch (error) {
+            console.error("댓글 삭제 에러:", error);
+        }
+    };
 
+    // 댓글 수정
+    const onCommentUpdateHandler = async (commentId, updatedContent) => {
+        try {
+            await api.patch(`/quizzes/${quizId}/quizComments/${commentId}`, {
+                content: updatedContent,
+            });
+
+            setComments(prevComments =>
+                prevComments.map(comment =>
+                    comment.commentId === commentId ? { ...comment, content: updatedContent } : comment
+                )
+            );
+        } catch (error) {
+            console.error("댓글 수정 에러:", error);
+        }
+    };
     return (
         <QuizDetailBoxStyle>
             <h2>제목: {quizzes.title}</h2>
@@ -124,7 +149,11 @@ function QuizDetailPage() {
                 <h3>댓글 목록</h3>
                 <ul>
                     {comments.map(comment => (
-                        <li key={comment.commentId}>{comment.content}</li>
+                        <li key={comment.commentId}>
+                            {comment.content}
+                            <button onClick={() => onCommentRemoveHandler(comment.commentId)}>삭제</button>
+                            <button onClick={() => onCommentUpdateHandler(comment.commentId, prompt('댓글 수정', comment.content))}>수정</button>
+                        </li>
                     ))}
                 </ul>
             </div>

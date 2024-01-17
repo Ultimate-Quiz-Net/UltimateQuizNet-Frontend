@@ -12,7 +12,12 @@ export const SignInWrapper = styled.section`
   -webkit-box-pack: center;
   justify-content: center;
   padding: 0px 12px;
-  background-image: url(${backGroundImg});
+  background-image: linear-gradient(
+    45deg,
+    rgba(51, 43, 43, 0.75),
+    rgba(20, 19, 20, 0.61)
+  ),
+  url(${backGroundImg});
   background-size: cover;
 `;
 

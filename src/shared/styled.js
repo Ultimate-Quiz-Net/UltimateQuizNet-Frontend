@@ -42,6 +42,7 @@ export const QuizDetailBoxStyle = styled.div`
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  background-color: white;
   text-align: left; /* 이미지 및 내용 중앙 정렬 */
   img {
     width: 100%;
@@ -49,6 +50,7 @@ export const QuizDetailBoxStyle = styled.div`
     border-radius: 4px;
     margin-bottom: 10px;
     object-fit: cover;
+    border: 1px solid #ccc;
   }
   h2 {
     font-size: 1.5rem;
@@ -95,5 +97,21 @@ export const MainTextContainer = styled.div`
     white-space: pre-line;
     font-family: Galmuri11, sans-serif;
     font-weight: bold;
+  }
+`;
+
+// 카드 호버 이벤트
+export const HoverCard = styled.div`
+width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+  transition: all 0.3s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transform: translateY(-10px);
+    
   }
 `;

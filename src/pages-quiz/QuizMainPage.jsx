@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../axios/api';
+import { HoverCard } from '../shared/styled';
 
+// 텍스트 일정이상 넘어가면 ..으로 보이게 잘라줌
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.slice(0, maxLength) + '...';
+}
 function QuizMainPage() {
   const [quizzes, setQuizzes] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,18 +38,19 @@ function QuizMainPage() {
         {quizzes.length > 0 &&
           quizzes.map((quiz) => (
             <div key={quiz.quizId} className="col">
-              <div className="card h-100">
-                {/* Link 태그를 특정 요소에 적용 */}
-                <Link to={`/quizzes/${quiz.quizId}`}>
-                  <img src={quiz.imageURL} className="card-img-top" alt="Card image cap" />
-                </Link>
-                <div className="card-body">
-                  <h5 className="card-title">{quiz.title}</h5>
-                  <p className="card-text">{quiz.content}</p>
-                  <p className="card-text">작성자:</p>
+              <HoverCard>
+                <div className="card h-100">
+                  {/* Link 태그를 특정 요소에 적용 */}
+                  <Link to={`/quizzes/${quiz.quizId}`}>
+                    <img src={quiz.imageURL} className="card-img-top" alt="Card image cap" style={{ backgroundColor: 'white' }} />
+                  </Link>
+                  <div className="card-body">
+                    <h6 className="card-title">{quiz.title}</h6>
+                    <p className="card-text">{truncateText(quiz.content, 7)}</p>
+                    <p className="card-text">작성자:</p>
+                  </div>
                 </div>
-
-              </div>
+              </HoverCard>
             </div>
           ))}
       </div>
