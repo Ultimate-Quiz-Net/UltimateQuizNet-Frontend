@@ -1,9 +1,8 @@
-// api.js 파일
+import axios from "axios";
 
-import axios from 'axios';
-
-const BASE_URL = 'https://www.quizess.store/api';
+const BASE_URL = "https://www.quizess.store/api";
 
 export const api = axios.create({
-	baseURL: BASE_URL,
+  baseURL: BASE_URL,
+
 });

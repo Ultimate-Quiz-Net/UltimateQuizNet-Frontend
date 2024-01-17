@@ -1,0 +1,28 @@
+{
+  "debatesBoard": [
+    {
+      "id": 1,
+      "title": "title1",
+      "createAt": "",
+      "username": "username1"
+    },
+    {
+      "id": 2,
+      "title": "title2",
+      "createAt": "",
+      "username": "username2"
+    },
+    {
+      "id": 3,
+      "title": "title3",
+      "createAt": "",
+      "username": "username3"
+    },
+    {
+      "id": 4,
+      "title": "title4",
+      "createAt": "",
+      "username": "username4"
+    }
+  ]
+}
