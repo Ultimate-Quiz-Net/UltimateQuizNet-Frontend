@@ -15,7 +15,6 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Confirm />} /> */}
         <Route path="sign-in" element={<SignIn />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route element={<Layout />}>
