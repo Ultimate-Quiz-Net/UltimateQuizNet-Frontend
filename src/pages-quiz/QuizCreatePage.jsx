@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { FormWrapper } from '../shared/styled';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../axios/api';
@@ -10,11 +9,9 @@ const QuizCreatePage = () => {
     const [imageBase64, setImageBase64] = useState(null);
     const [formData, setFormData] = useState({
         title: '',
-        category: '퀴즈', // 베이스를 '퀴즈'로 설정
         content: '',
 
     });
-
 
     const formChangeHandler = (event) => {
         const { name, value } = event.target;
@@ -36,16 +33,29 @@ const QuizCreatePage = () => {
 
         // 다른 폼 데이터 추가
         formDataToSend.append('title', formData.title);
-        formDataToSend.append('category', formData.category);
         formDataToSend.append('content', formData.content);
 
 
+        // formDataToSend.append('category', formData.category);
+
         try {
+            console.log("imageSrc", imageSrc);
+            console.log("formDataToSend", formDataToSend);
             await api.post("/quizzes", formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+
+            setFormData({
+                title: '',
+                content: '',
+
+            });
+            setImageSrc(null);
+            setImageBase64(null);
+
+            navigate("/home");
         } catch (error) {
             console.error("에러 발생:", error);
             if (error.response) {
@@ -53,13 +63,7 @@ const QuizCreatePage = () => {
             }
         }
 
-        setFormData({
-            title: '',
-            category: '',
-            content: '',
 
-        });
-        navigate("/home");
     };
 
 
@@ -70,7 +74,7 @@ const QuizCreatePage = () => {
         if (e.target.files) {
             const uploadFile = e.target.files[0];
             setImageSrc(uploadFile);
-            
+
             // 이미지 선택 시 바로 미리보기 생성
             encodeFileToBase64(uploadFile);
         }
@@ -100,28 +104,16 @@ const QuizCreatePage = () => {
                     제목:
                     <input type="text" name="title" value={formData.title} onChange={formChangeHandler} />
                 </label>
-                <label>
-                    카테고리:
-                    <select name="category" value={formData.category} onChange={formChangeHandler}>
-                        <option value="퀴즈">퀴즈</option>
-                        <option value="토론">토론</option>
-                    </select>
-                </label>
                 <br />
                 <label>
                     내용:
-                    <textarea name="content" value={formData.content} onChange={formChangeHandler} />
+                    <textarea name="content" value={formData.content} onChange={formChangeHandler} placeholder="최소 5글자 이상의 내용을 입력해주세요"/>
                 </label>
-                <br />
-                {/* <label>
-                    답안:
-                    <input type="text" name="answerKey" value={formData.answerKey} onChange={formChangeHandler} />
-                </label> */}
                 <br />
                 <button>등록</button>
             </form>
         </FormWrapper>
     );
-};
+}; 
 
 export default QuizCreatePage;

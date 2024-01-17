@@ -6,6 +6,8 @@ import { api } from '../axios/api';
 function QuizDetailPage() {
     const [quizzes, setQuizzes] = useState([]);
     const [editableQuiz, setEditableQuiz] = useState(null); // 수정할 데이터를 저장하는 state
+    const [comments, setComments] = useState([]); // 댓글 목록을 저장하는 state
+    const [newComment, setNewComment] = useState(''); // 새로운 댓글을 저장하는 state
     const { quizId } = useParams();
     useEffect(() => {
         const fetchData = async () => {
@@ -14,9 +16,15 @@ function QuizDetailPage() {
                     // 유효한 quizId가 없다면 요청을 보내지 않음
                     return;
                 }
-                const response  = await api.get(`/quizzes/${quizId}`);
+                const response = await api.get(`/quizzes/${quizId}`);
                 console.log(response.data);
-                setQuizzes(response.data); 
+                setQuizzes(response.data);
+
+                // 해당 퀴즈에 대한 댓글 가져오기
+                const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`);
+                console.log(commentsResponse.data);
+                setComments(commentsResponse.data);
+
             } catch (error) {
                 console.error("에러 발생:", error);
             }
@@ -64,6 +72,22 @@ function QuizDetailPage() {
         }
     };
 
+    // 댓글 작성
+    const onCommentSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await api.post(`/quizzes/${quizId}/quizComments `, {
+                content: newComment,
+            });
+
+            // 새로운 댓글 추가 후 목록 갱신
+            setComments([...comments, response.data]);
+            setNewComment('');
+        } catch (error) {
+            console.error("댓글 작성 에러:", error);
+        }
+    };
+
     return (
         <QuizDetailBoxStyle>
             <h2>제목: {quizzes.title}</h2>
@@ -95,6 +119,27 @@ function QuizDetailPage() {
             <button onClick={handleMainButtonClick}>
                 main으로 이동
             </button>
+
+            <div>
+                <h3>댓글 목록</h3>
+                <ul>
+                    {comments.map(comment => (
+                        <li key={comment.commentId}>{comment.content}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <form onSubmit={onCommentSubmit}>
+                <label>
+                    댓글 작성:
+                    <input
+                        type="text"
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                    />
+                </label>
+                <button type="submit">댓글 작성</button>
+            </form>
         </QuizDetailBoxStyle>
     );
 }
