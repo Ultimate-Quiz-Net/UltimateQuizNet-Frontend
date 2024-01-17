@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import surf from "../images/quiz_icon.png";
+import surf from "../images/IMG_0286.png";
 
 function CustomNavbar() {
     return (
