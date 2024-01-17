@@ -21,6 +21,7 @@ function Home() {
       </div>
     </MainTextContainer>
   );
+
 }
 
 export default Home;
