@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { QuizDetailBoxStyle } from '../shared/styled';
+import { QuizDetailBoxStyle } from '../Shared/styled';
 import { api } from '../axios/api';
 
 function QuizDetailPage() {
