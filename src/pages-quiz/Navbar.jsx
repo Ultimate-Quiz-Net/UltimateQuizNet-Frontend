@@ -15,27 +15,12 @@ function CustomNavbar() {
     }
   };
 
-  // 퀴즈 게시판 이동 버튼
-  const quizBoardButtonHandler = () => {
-    if (Cookies.get("token")) {
-      navigate("/home");
-    } else {
-      alert("로그인이 필요합니다");
-    }
-  };
 
-  // 토론 게시판 이동 버튼
-  const debateBoardButtonHandler = () => {
-    if (Cookies.get("token")) {
-      navigate("/debates");
-    } else {
-      alert("로그인이 필요합니다");
-    }
-  };
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"
+      style={{ height: '70px' }}
+      className="navbar navbar-expand-md bg-body-tertiary bg-dark border-bottom border-body"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
@@ -62,16 +47,22 @@ function CustomNavbar() {
               <Link className="nav-link active" to="/">
                 <StyledButton className="button--winona" data-text="메인 화면">
                   <span>메인 화면</span>
-                  </StyledButton>
+                </StyledButton>
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/home">
-              <StyledButton className="button--winona" data-text="퀴즈 게시판">
+                <StyledButton className="button--winona" data-text="퀴즈 게시판">
                   <span>퀴즈 게시판</span>
-                  </StyledButton>
+                </StyledButton>
               </Link>
-
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/debates">
+                <StyledButton className="button--winona" data-text="토론 게시판">
+                  <span>토론 게시판</span>
+                </StyledButton>
+              </Link>
             </li>
           </ul>
         </div>
