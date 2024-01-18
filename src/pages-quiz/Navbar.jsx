@@ -2,12 +2,12 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/img/IMG_0286.png";
 import Cookies from "js-cookie";
-
+import { StyledButton, LoginButton } from "../shared/styled";
 function CustomNavbar() {
   const navigate = useNavigate();
   const signOutButtonHandler = () => {
-    if (Cookies.get("token")) {
-      Cookies.remove("token");
+    if (Cookies.get("accessToken")) {
+      Cookies.remove("accessToken");
       navigate("/");
     } else {
       navigate("/sign-in");
@@ -40,19 +40,23 @@ function CustomNavbar() {
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link active" to="/">
-                메인 화면
+                <StyledButton className="button--winona" data-text="메인 화면">
+                  <span>메인 화면</span>
+                  </StyledButton>
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/home">
-                퀴즈 게시판
+              <StyledButton className="button--winona" data-text="퀴즈 게시판">
+                  <span>퀴즈 게시판</span>
+                  </StyledButton>
               </Link>
             </li>
           </ul>
         </div>
-        <button onClick={signOutButtonHandler}>
-          {Cookies.get("token") ? "로그아웃" : "로그인"}
-        </button>
+        <LoginButton onClick={signOutButtonHandler} >
+          {Cookies.get("accessToken") ? "로그아웃" : "로그인"}
+        </LoginButton>
       </div>
     </nav>
   );

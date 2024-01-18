@@ -31,14 +31,23 @@ function SignIn() {
         alert("아이디 비밀번호를 입력해주세요");
         return;
       }
+
       const response = await api.post("/sign-in", userData);
-      Cookies.set("token", response.data.token);
-      navigate("/");
+      if (response.data.message === "로그인 성공.") {
+        // 서버 응답이 성공하고, 메시지가 "로그인 성공."일 때
+  
+        Cookies.set("accessToken", response.data.data.accessToken);
+        Cookies.set("refreshToken", response.data.data.refreshToken);
+        navigate("/");
+      } else {
+        setError("토큰이 없습니다.");
+      }
+
     } catch (error) {
       if (error.response) {
         console.log("error response 확인", error);
         const errorStatus = error.response.status;
-        const errorMessage = error.response.errorMessage;
+        const errorMessage = error.response.data.message;
 
         if (errorStatus === 400 || errorStatus === 401) {
           alert(errorMessage);

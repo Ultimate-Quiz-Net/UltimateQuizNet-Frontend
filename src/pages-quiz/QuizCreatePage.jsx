@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FormWrapper } from '../shared/styled';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../axios/api';
+import { getAuthHeaders } from '../shared/authHeaders';
 
 const QuizCreatePage = () => {
     const navigate = useNavigate();
@@ -34,15 +35,14 @@ const QuizCreatePage = () => {
         // 다른 폼 데이터 추가
         formDataToSend.append('title', formData.title);
         formDataToSend.append('content', formData.content);
-
-
         // formDataToSend.append('category', formData.category);
 
         try {
-            console.log("imageSrc", imageSrc);
+            const headers = getAuthHeaders();
             console.log("formDataToSend", formDataToSend);
             await api.post("/quizzes", formDataToSend, {
                 headers: {
+                    ...headers,
                     'Content-Type': 'multipart/form-data',
                 },
             });
@@ -50,7 +50,6 @@ const QuizCreatePage = () => {
             setFormData({
                 title: '',
                 content: '',
-
             });
             setImageSrc(null);
             setImageBase64(null);

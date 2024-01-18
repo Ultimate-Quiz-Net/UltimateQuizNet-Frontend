@@ -15,13 +15,13 @@ const Router = () => {
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path="sign-in" element={<SignIn />} />
-                    <Route path="sign-up" element={<SignUp />} />
+                    <Route path="/sign-in" element={<SignIn />} />
+                    <Route path="/sign-up" element={<SignUp />} />
                     <Route element={<Layout />}>
                         {/* 메인 페이지 */}
                         <Route path="/" element={<Home />} />
-                        <Route path="debates" element={<DebatesMain />} />
-                        <Route path="debates/:id" element={<DebatesDetail />} />
+                        <Route path="/debates" element={<DebatesMain />} />
+                        <Route path="/debates/:id" element={<DebatesDetail />} />
                         {/* 퀴즈 게시판 페이지 */}
                         <Route path="/home" element={<QuizMainPage />} />
                         {/* 퀴즈 게시물 등록 페이지 */}
