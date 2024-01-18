@@ -27,18 +27,13 @@ function QuizDetailPage() {
 
                 // 해당 퀴즈에 대한 댓글 가져오기
                 const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
-                
-                // 이전 댓글과 새로 받은 댓글이 다를 경우에만 업데이트
-                if (JSON.stringify(commentsResponse.data.comments) !== JSON.stringify(comments)) {
-                    setComments(commentsResponse.data.comments);
-                }
-console.log(comments);
+                setComments(prevComments => [...prevComments, ...commentsResponse.data.comments]);
             } catch (error) {
                 console.error("에러 발생:", error);
             }
         };
         fetchData();
-    }, [quizId, comments]);
+    }, [quizId]);
 
     const navigate = useNavigate();
 
@@ -148,25 +143,31 @@ console.log(comments);
                 </div>
             )}
 
-            {!editableQuiz && <button onClick={handleUpdateButtonClick}>수정</button>}
-
-            <button onClick={() => onRemoveHandler(quizzes.quizId)}>삭제</button>
+            {!editableQuiz && headers.headers.Authorization && (
+                <>
+                    <button onClick={handleUpdateButtonClick}>수정</button>
+                    <button onClick={() => onRemoveHandler(quizzes.quizId)}>삭제</button>
+                </>
+            )}
 
             <button onClick={handleMainButtonClick}>
                 main으로 이동
             </button>
 
-
             <div>
-                <br/>
+                <br />
                 <h3>댓글 목록</h3>
                 {comments ? (
                     <ul>
                         {comments.map(comment => (
                             <li key={comment.quizCommentId}>
                                 {comment.content} &nbsp;
-                                <button onClick={() => onCommentRemoveHandler(comment.quizCommentId)}>삭제</button>
-                                <button onClick={() => onCommentUpdateHandler(comment.quizCommentId, prompt('댓글 수정', comment.content))}>수정</button>
+                                {headers.headers.Authorization && (
+                                    <>
+                                        <button onClick={() => onCommentRemoveHandler(comment.quizCommentId)}>삭제</button>
+                                        <button onClick={() => onCommentUpdateHandler(comment.quizCommentId, prompt('댓글 수정', comment.content))}>수정</button>
+                                    </>
+                                )}
                             </li>
                         ))}
                     </ul>
@@ -175,19 +176,20 @@ console.log(comments);
                 )}
             </div>
 
-            <form onSubmit={onCommentSubmit}>
-                <label>
-                    댓글 작성:
-                    <input
-                        type="text"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        style={inputStyle}
-                    />
-                </label>
-                <button type="submit">댓글 작성</button>
-            </form>
-
+            {headers.headers.Authorization && (
+                <form onSubmit={onCommentSubmit}>
+                    <label>
+                        댓글 작성:
+                        <input
+                            type="text"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            style={inputStyle}
+                        />
+                    </label>
+                    <button type="submit">댓글 작성</button>
+                </form>
+            )}
         </QuizDetailBoxStyle>
     );
 }

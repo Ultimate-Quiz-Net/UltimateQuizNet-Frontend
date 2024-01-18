@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FormWrapper } from "../shared/styled";
 import { useNavigate } from "react-router-dom";
 import { api } from "../axios/api";
-import { getAuthHeaders } from '../shared/authHeaders';
+import { getAuthHeaders } from "../shared/authHeaders";
 
 const DebatesCreatePage = () => {
   const headers = getAuthHeaders();
@@ -23,7 +23,6 @@ const DebatesCreatePage = () => {
   // 게시글 등록
   const handleAddButtonClick = async (event) => {
     event.preventDefault();
-
 
     try {
       console.log("formDataToSend", formData);

@@ -16,8 +16,8 @@ const GetData = () => {
       // console.log("response 확인", response);
     });
   }, []);
-  console.log("data에 값 확인 =>", data);
-  
+  // console.log("data에 값 확인 =>", data);
+
   const boardItem = data.map((item) => (
     <DebatesBoardTableRow key={item.debateId}>
       <DebatesBoardTableColumn>{item.debateId}</DebatesBoardTableColumn>
@@ -32,7 +32,7 @@ const GetData = () => {
 };
 function DebatesMain() {
   const board = GetData();
-  console.log("board 확인", board);
+  // console.log("board 확인", board);
   const navigate = useNavigate();
   const addDebatesButtonHandler = () => {
     navigate("/debates-add");
