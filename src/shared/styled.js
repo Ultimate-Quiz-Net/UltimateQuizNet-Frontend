@@ -48,7 +48,8 @@ font-family: "Galmuri11", sans-serif;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
-  text-align: left; /* 이미지 및 내용 중앙 정렬 */
+  text-align: left; 
+
   img {
     width: 100%;
     height: auto;
@@ -63,6 +64,7 @@ font-family: "Galmuri11", sans-serif;
   }
   p {
     margin-bottom: 8px;
+    
   }
   button {
     background-color: #007BFF;
@@ -110,7 +112,7 @@ font-family: "Galmuri11", sans-serif;
 // 카드 호버 이벤트
 export const HoverCard = styled.div`
 font-family: "Galmuri11", sans-serif;
-width: 100%;
+  width: 100%;
   height: 100%;
   border-radius: 8px;
   overflow: hidden;
