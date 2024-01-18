@@ -29,6 +29,8 @@ function QuizDetailPage() {
                 // 해당 퀴즈에 대한 댓글 가져오기
                 const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
                 setComments(prevComments => [...prevComments, ...commentsResponse.data.comments]);
+
+                
             } catch (error) {
                 console.error("에러 발생:", error);
             }
