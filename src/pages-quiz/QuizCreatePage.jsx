@@ -101,8 +101,8 @@ const QuizCreatePage = () => {
                 <input type="file" id="profile-upload" accept="image/*" onChange={onChangeImg} style={{ color: 'white' }}/>
 
                 {/* 미리보기 */}
-                <div className="preview">
-                    {imageBase64 && <img src={imageBase64} alt="preview-img" />}
+                <div className="preview" >
+                    {imageBase64 && <img src={imageBase64} alt="preview-img" style={{ maxHeight: '400px', maxWidth: '400px' }}/>}
                 </div>
 
                 {/* 제목 입력란 */}
