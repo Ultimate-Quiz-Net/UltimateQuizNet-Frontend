@@ -19,6 +19,16 @@ function QuizMainPage() {
   const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
 
+  const handleQuizCreateClick = () => {
+    // 토큰이 없을 경우 알림 표시
+    if (!headers.Authorization) {
+      alert("로그인이 필요합니다.");
+      navigate("/sign-in");
+    } else {
+      // 토큰이 있는 경우 게시글 등록 페이지로 이동
+      navigate("/quizzes");
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,9 +51,7 @@ function QuizMainPage() {
   return (
     <div data-bs-theme="dark">
       <div className="text-center mt-3" style={{ marginBottom: "30px" }}>
-        <Link to="/quizzes">
-          <Btn11 className="btn btn-primary">게시글 등록</Btn11>
-        </Link>
+          <Btn11 className="btn btn-primary" onClick={handleQuizCreateClick}>게시글 등록</Btn11>
       </div>
       <div className="row row-cols-1 row-cols-md-4 g-4 mx-auto w-75 pb-5">
         {quizzes.length > 0 &&
