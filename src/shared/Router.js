@@ -24,7 +24,7 @@ const Router = () => {
             <Route path="debates" element={<DebatesMain />} />
             <Route path="debates/:id" element={<DebatesDetail />} />
             <Route
-              path="/quizzess/:quizid/debates"
+              path="/debates-add"
               element={<DebatesCreatePage />}
             />
             {/* 퀴즈 게시판 페이지 */}

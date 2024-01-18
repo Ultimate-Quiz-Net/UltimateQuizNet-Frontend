@@ -6,39 +6,37 @@ import DebatesBoardTableRow from "../components/debatesBoard/DebatesBoardTableRo
 import * as St from "../components/style";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { getAuthHeaders } from "../shared/authHeaders";
 
 const GetData = () => {
-  const [data, setData] = useState({});
-
+  const [data, setData] = useState([]);
+  const headers = getAuthHeaders();
   useEffect(() => {
-    api.get("/debates").then((response) => {
-      setData(response.data);
+    api.get("/debates", headers).then((response) => {
+      setData(response.data.data);
       // console.log("response 확인", response);
     });
   }, []);
-
   console.log("data에 값 확인 =>", data);
-  const boardItem = Object.values(data).map((item) => (
+  const boardItem = data.map((item) => (
     <DebatesBoardTableRow key={item.debateId}>
       <DebatesBoardTableColumn>{item.debateId}</DebatesBoardTableColumn>
       <DebatesBoardTableColumn>
-        <Link to={`/debates/${item.id}`}>{item.title}</Link>
+        <Link to={`/debates/${item.debateId}`}>{item.title}</Link>
       </DebatesBoardTableColumn>
-      <DebatesBoardTableColumn>{item.createAt}</DebatesBoardTableColumn>
-      <DebatesBoardTableColumn>{item.User}</DebatesBoardTableColumn>
+      <DebatesBoardTableColumn>{item.createdAt}</DebatesBoardTableColumn>
+      <DebatesBoardTableColumn>{item.User.nickname}</DebatesBoardTableColumn>
     </DebatesBoardTableRow>
   ));
   return boardItem;
 };
-
 function DebatesMain() {
   const board = GetData();
+  console.log("board 확인", board);
   const navigate = useNavigate();
-
   const addDebatesButtonHandler = () => {
-    navigate("/quizzess/:quizid/debates");
+    navigate("/debates-add");
   };
-
   return (
     <>
       <St.BodyStyle>
@@ -54,5 +52,4 @@ function DebatesMain() {
     </>
   );
 }
-
 export default DebatesMain;

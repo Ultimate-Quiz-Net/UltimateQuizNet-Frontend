@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FormWrapper } from "../shared/styled";
 import { useNavigate } from "react-router-dom";
 import { api } from "../axios/api";
+import { getAuthHeaders } from '../shared/authHeaders';
 
 const DebatesCreatePage = () => {
+  const headers = getAuthHeaders();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -22,21 +24,11 @@ const DebatesCreatePage = () => {
   const handleAddButtonClick = async (event) => {
     event.preventDefault();
 
-    // FormData 객체 생성
-    const formDataToSend = new FormData();
 
-    // 다른 폼 데이터 추가
-    formDataToSend.append("title", formData.title);
-    formDataToSend.append("content", formData.content);
 
     try {
-      console.log("formDataToSend", formDataToSend);
-      await api.post(`/quizzess/:quizid/debates`, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
+      console.log("formDataToSend", formData);
+      await api.post("/debates", formData, { headers });
       setFormData({
         title: "",
         content: "",

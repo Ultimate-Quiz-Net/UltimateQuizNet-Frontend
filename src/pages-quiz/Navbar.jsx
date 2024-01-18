@@ -15,7 +15,14 @@ function CustomNavbar() {
     }
   };
 
-
+// 토론 게시판 이동 버튼
+const debateBoardButtonHandler = () => {
+  if (Cookies.get("accessToken" || "refreshToken")) {
+    navigate("/debates");
+  } else {
+    alert("로그인이 필요합니다");
+  }
+};
 
   return (
     <nav
@@ -59,7 +66,7 @@ function CustomNavbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/debates">
-                <StyledButton className="button--winona" data-text="토론 게시판">
+                <StyledButton className="button--winona" data-text="토론 게시판" onClick={debateBoardButtonHandler}>
                   <span>토론 게시판</span>
                 </StyledButton>
               </Link>
