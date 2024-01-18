@@ -43,11 +43,6 @@ const QuizCreatePage = () => {
 
             // API 호출
             const headers = getAuthHeaders();
-
-            if (!headers) {
-                alert("로그인이 필요합니다.");
-                return;
-            }
             
             await api.post("/quizzes", formDataToSend, {
                 headers: {
