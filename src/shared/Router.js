@@ -23,10 +23,7 @@ const Router = () => {
             <Route path="/" element={<Home />} />
             <Route path="debates" element={<DebatesMain />} />
             <Route path="debates/:debateId" element={<DebatesDetail />} />
-            <Route
-              path="/quizzess/:quizid/debates"
-              element={<DebatesCreatePage />}
-            />
+            <Route path="debates-add" element={<DebatesCreatePage />} />
             {/* 퀴즈 게시판 페이지 */}
             <Route path="/home" element={<QuizMainPage />} />
             {/* 퀴즈 게시물 등록 페이지 */}
@@ -39,6 +36,5 @@ const Router = () => {
     </div>
   );
 };
-
 
 export default Router;

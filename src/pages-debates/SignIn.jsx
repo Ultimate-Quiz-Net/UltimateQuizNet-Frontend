@@ -46,7 +46,7 @@ function SignIn() {
       if (error.response) {
         console.log("error response 확인", error);
         const errorStatus = error.response.status;
-        const errorMessage = error.response.data.message;
+        const errorMessage = error.response.data.errorMessage;
 
         if (errorStatus === 400 || errorStatus === 401) {
           alert(errorMessage);

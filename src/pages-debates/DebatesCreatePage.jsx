@@ -22,27 +22,23 @@ const DebatesCreatePage = () => {
   const handleAddButtonClick = async (event) => {
     event.preventDefault();
 
-    // FormData 객체 생성
-    const formDataToSend = new FormData();
+    // // FormData 객체 생성
+    // const formDataToSend = new FormData();
 
-    // 다른 폼 데이터 추가
-    formDataToSend.append("title", formData.title);
-    formDataToSend.append("content", formData.content);
+    // // 다른 폼 데이터 추가
+    // formDataToSend.append("title", formData.title);
+    // formDataToSend.append("content", formData.content);
 
     try {
-      console.log("formDataToSend", formDataToSend);
-      await api.post(`/quizzess/:quizid/debates`, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      console.log("formDataToSend", formData);
+      await api.post("/debates", formData);
 
       setFormData({
         title: "",
         content: "",
       });
 
-      navigate("/home");
+      navigate("/debates");
     } catch (error) {
       console.error("에러 발생:", error);
       if (error.response) {
@@ -61,6 +57,7 @@ const DebatesCreatePage = () => {
             name="title"
             value={formData.title}
             onChange={formChangeHandler}
+            placeholder="최소 3글자 이상의 내용을"
           />
         </label>
         <br />
@@ -70,7 +67,7 @@ const DebatesCreatePage = () => {
             name="content"
             value={formData.content}
             onChange={formChangeHandler}
-            placeholder="최소 5글자 이상의 내용을 입력해주세요"
+            placeholder="최소 10글자 이상의 내용을 입력해주세요"
           />
         </label>
         <br />

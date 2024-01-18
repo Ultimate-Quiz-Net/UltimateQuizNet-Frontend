@@ -33,10 +33,11 @@ const GetData = () => {
 
 function DebatesMain() {
   const board = GetData();
+  console.log("board 확인", board);
   const navigate = useNavigate();
 
   const addDebatesButtonHandler = () => {
-    navigate("/debates");
+    navigate("/debates-add");
   };
 
   return (

@@ -15,15 +15,6 @@ function CustomNavbar() {
     }
   };
 
-  // 퀴즈 게시판 이동 버튼
-  const quizBoardButtonHandler = () => {
-    if (Cookies.get("accessToken" || "refreshToken")) {
-      navigate("/home");
-    } else {
-      alert("로그인이 필요합니다");
-    }
-  };
-
   // 토론 게시판 이동 버튼
   const debateBoardButtonHandler = () => {
     if (Cookies.get("accessToken" || "refreshToken")) {
@@ -72,6 +63,17 @@ function CustomNavbar() {
                   data-text="퀴즈 게시판"
                 >
                   <span>퀴즈 게시판</span>
+                </StyledButton>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/debates">
+                <StyledButton
+                  className="button--winona"
+                  data-text="토론 게시판"
+                  onClick={debateBoardButtonHandler}
+                >
+                  <span>토론 게시판</span>
                 </StyledButton>
               </Link>
             </li>

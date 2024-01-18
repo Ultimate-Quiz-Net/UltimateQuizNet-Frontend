@@ -59,7 +59,6 @@ export const SignTitle = styled.h1`
   font-size: 33px;
   font-family: Galmuri11, sans-serif;
   font-weight: bold;
-  /* margin-top: 110px; */
 `;
 
 export const SignInputStyle = styled.div`
@@ -193,6 +192,8 @@ export const TableRow = styled.tr`
 export const TableDetailBodyStyle = styled.div`
   width: 60%;
   margin: 0 auto;
+  margin-bottom: 150px;
+  padding: 30px;
 `;
 
 export const TableDetailItem = styled.div`
@@ -205,6 +206,7 @@ export const FirstLabel = styled.label`
   width: 30%;
   font-family: Galmuri11, sans-serif;
   font-weight: bold;
+  color: orange;
 `;
 
 export const SecondLabel = styled.label`
@@ -212,4 +214,24 @@ export const SecondLabel = styled.label`
   width: 70%;
   font-family: Galmuri11, sans-serif;
   font-weight: bold;
+`;
+export const TableDetailButtonStyle = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const TableDetailButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Galmuri11, sans-serif;
+  font-weight: bold;
+  width: 70px;
+  height: 40px;
+  border-radius: 20px;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  background-color: rgb(254, 83, 31);
 `;
