@@ -32,17 +32,20 @@ function DebatesDetail() {
         setData(response.data.data[0]);
 
         const commentsResponse = await api.get(
-          `/debates/${debatesId}/comments`,
+          `/debates/${debatesId}`,
           headers
         );
-        console.log("comments response 보기", commentsResponse);
-        setComments(commentsResponse.data);
+        console.log(
+          "comments response 보기",
+          commentsResponse.data.data[0].Comments
+        );
+        setComments(commentsResponse.data.data[0].Comments);
       } catch (error) {
         console.error("에러 발생", error);
       }
     };
     fetchData();
-  }, [debatesId, headers]);
+  }, [debatesId]);
 
   // 토론 게시글 삭제 버튼
   const debateDetailDeleteButtonHandler = async () => {
@@ -217,31 +220,42 @@ function DebatesDetail() {
           )}
         </St.EditFormWrapper>
 
-        <div>
+        {/* <div>
+          <br />
           <h3>댓글 목록</h3>
-          <ul>
-            {comments.map((comment) => (
-              <li key={comment.quizCommentId}>
-                {comment?.content}
-                <button
-                  onClick={() => onCommentRemoveHandler(comment.quizCommentId)}
-                >
-                  삭제
-                </button>
-                <button
-                  onClick={() =>
-                    onCommentUpdateHandler(
-                      comment.quizCommentId,
-                      prompt("댓글 수정", comment.content)
-                    )
-                  }
-                >
-                  수정
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+          {comments ? (
+            <ul>
+              {comments.map((comment) => (
+                <li key={comment.quizCommentId}>
+                  {comment.content} &nbsp;
+                  {headers.Authorization && (
+                    <>
+                      <button
+                        onClick={() =>
+                          onCommentRemoveHandler(comment.quizCommentId)
+                        }
+                      >
+                        삭제
+                      </button>
+                      <button
+                        onClick={() =>
+                          onCommentUpdateHandler(
+                            comment.quizCommentId,
+                            prompt("댓글 수정", comment.content)
+                          )
+                        }
+                      >
+                        수정
+                      </button>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>댓글이 없습니다.</p>
+          )}
+        </div> */}
 
         <form onSubmit={onCommentSubmit}>
           <label>

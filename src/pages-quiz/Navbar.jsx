@@ -68,7 +68,7 @@ function CustomNavbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active">
+              <div className="nav-link active">
                 <StyledButton
                   className="button--winona"
                   data-text="토론 게시판"
@@ -76,7 +76,7 @@ function CustomNavbar() {
                 >
                   <span>토론 게시판</span>
                 </StyledButton>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
