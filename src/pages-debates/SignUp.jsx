@@ -30,7 +30,7 @@ function SignUp() {
       }
 
       const response = await api.post("/sign-up", userData);
-      console.log("response 보자", response);
+      // console.log("response 보자", response);
       if (response.status === 200) {
         alert("회원가입에 성공했습니다.");
         navigate("/sign-in");

@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { StyledButton, LoginButton } from "../shared/styled";
 function CustomNavbar() {
   const navigate = useNavigate();
+  // 로그아웃 버튼
   const signOutButtonHandler = () => {
     if (Cookies.get("accessToken")) {
       Cookies.remove("accessToken");
@@ -13,6 +14,25 @@ function CustomNavbar() {
       navigate("/sign-in");
     }
   };
+
+  // 퀴즈 게시판 이동 버튼
+  const quizBoardButtonHandler = () => {
+    if (Cookies.get("token")) {
+      navigate("/home");
+    } else {
+      alert("로그인이 필요합니다");
+    }
+  };
+
+  // 토론 게시판 이동 버튼
+  const debateBoardButtonHandler = () => {
+    if (Cookies.get("token")) {
+      navigate("/debates");
+    } else {
+      alert("로그인이 필요합니다");
+    }
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body"
@@ -51,6 +71,7 @@ function CustomNavbar() {
                   <span>퀴즈 게시판</span>
                   </StyledButton>
               </Link>
+
             </li>
           </ul>
         </div>

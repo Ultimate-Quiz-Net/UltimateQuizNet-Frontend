@@ -9,9 +9,8 @@ const QuizCreatePage = () => {
     const [imageSrc, setImageSrc] = useState(null);
     const [imageBase64, setImageBase64] = useState(null);
     const [formData, setFormData] = useState({
-        title: '',
-        content: '',
-
+        title: "",
+        content: "",
     });
 
     const formChangeHandler = (event) => {
@@ -30,16 +29,20 @@ const QuizCreatePage = () => {
         const formDataToSend = new FormData();
 
         // 이미지 파일 추가
-        formDataToSend.append('image', imageSrc);
+        formDataToSend.append("image", imageSrc);
 
         // 다른 폼 데이터 추가
-        formDataToSend.append('title', formData.title);
-        formDataToSend.append('content', formData.content);
-        // formDataToSend.append('category', formData.category);
+        formDataToSend.append("title", formData.title);
+        formDataToSend.append("content", formData.content);
+
 
         try {
-            const headers = getAuthHeaders();
+            // Logging: 이미지 파일 및 FormData 확인
+            console.log("imageSrc", imageSrc);
             console.log("formDataToSend", formDataToSend);
+
+            // API 호출
+            const headers = getAuthHeaders();
             await api.post("/quizzes", formDataToSend, {
                 headers: {
                     ...headers,
@@ -47,22 +50,23 @@ const QuizCreatePage = () => {
                 },
             });
 
+            // 등록 후 상태 초기화 및 페이지 이동
             setFormData({
-                title: '',
-                content: '',
+                title: "",
+                content: "",
             });
             setImageSrc(null);
             setImageBase64(null);
 
             navigate("/home");
         } catch (error) {
+            // 에러 처리
             console.error("에러 발생:", error);
             if (error.response) {
                 console.error("서버 응답 데이터:", error.response.data);
             }
         }
     };
-
 
     // 이미지 추가
     const onChangeImg = (e) => {
@@ -92,25 +96,34 @@ const QuizCreatePage = () => {
     return (
         <FormWrapper>
             <form onSubmit={handleAddButtonClick}>
+                {/* 이미지 업로드 input */}
                 <label htmlFor="profile-upload" />
                 <input type="file" id="profile-upload" accept="image/*" onChange={onChangeImg} />
+
+                {/* 미리보기 */}
                 <div className="preview">
                     {imageBase64 && <img src={imageBase64} alt="preview-img" />}
                 </div>
+
+                {/* 제목 입력란 */}
                 <label>
                     제목:
                     <input type="text" name="title" value={formData.title} onChange={formChangeHandler} />
                 </label>
                 <br />
+
+                {/* 내용 입력란 */}
                 <label>
                     내용:
-                    <textarea name="content" value={formData.content} onChange={formChangeHandler} placeholder="최소 5글자 이상의 내용을 입력해주세요"/>
+                    <textarea name="content" value={formData.content} onChange={formChangeHandler} placeholder="최소 5글자 이상의 내용을 입력해주세요" />
                 </label>
                 <br />
+
+                {/* 등록 버튼 */}
                 <button>등록</button>
             </form>
         </FormWrapper>
     );
-}; 
+};
 
 export default QuizCreatePage;
