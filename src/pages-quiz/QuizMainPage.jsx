@@ -23,7 +23,7 @@ function QuizMainPage() {
     const fetchData = async () => {
       try {
         const response = await api.get('/quizzes', headers);
-        console.log(response.data.data);
+        console.log(response);
         setQuizzes(response.data.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -63,7 +63,6 @@ function QuizMainPage() {
                   <div className="card-body">
                     <h6 className="card-title">{quiz.title}</h6>
                     <p className="card-text">{truncateText(quiz.content, 7)}</p>
-                    <p className="card-text">작성자:</p>
                   </div>
                 </div>
               </HoverCard>

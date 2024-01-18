@@ -316,3 +316,10 @@ font-family: "Galmuri11", sans-serif;
       4px 4px 5px 0px #0001;
   }
 `;
+
+
+export const commentsInput = styled.input`
+  border: 0;
+  border-radius: 15px;
+  background-color: rgb(233, 233, 233);
+`;

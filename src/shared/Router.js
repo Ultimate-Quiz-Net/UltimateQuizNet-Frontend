@@ -12,37 +12,29 @@ import QuizCreatePage from "../pages-quiz/QuizCreatePage";
 import QuizDetailPage from "../pages-quiz/QuizDetailPage";
 
 const Router = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route element={<Layout />}>
-            {/* 메인 페이지 */}
-            <Route path="/" element={<Home />} />
-            <Route path="debates" element={<DebatesMain />} />
-<<<<<<< HEAD
-            <Route path="debates/:debateId" element={<DebatesDetail />} />
-            <Route path="debates-add" element={<DebatesCreatePage />} />
-=======
-            <Route path="debates/:id" element={<DebatesDetail />} />
-            <Route
-              path="/debates-add"
-              element={<DebatesCreatePage />}
-            />
->>>>>>> 4c824651d77e3d32401fdb01ff0a5725d19e46f9
-            {/* 퀴즈 게시판 페이지 */}
-            <Route path="/home" element={<QuizMainPage />} />
-            {/* 퀴즈 게시물 등록 페이지 */}
-            <Route path="/quizzes" element={<QuizCreatePage />} />
-            {/* 퀴즈 상세 페이지 */}
-            <Route path="/quizzes/:quizId" element={<QuizDetailPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="sign-in" element={<SignIn />} />
+                    <Route path="sign-up" element={<SignUp />} />
+                    <Route element={<Layout />}>
+                        {/* 메인 페이지 */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="debates" element={<DebatesMain />} />
+                        <Route path="debates/:debateId" element={<DebatesDetail />} />
+                        <Route path="debates-add" element={<DebatesCreatePage />} />
+                        {/* 퀴즈 게시판 페이지 */}
+                        <Route path="/home" element={<QuizMainPage />} />
+                        {/* 퀴즈 게시물 등록 페이지 */}
+                        <Route path="/quizzes" element={<QuizCreatePage />} />
+                        {/* 퀴즈 상세 페이지 */}
+                        <Route path="/quizzes/:quizId" element={<QuizDetailPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 };
 
 export default Router;

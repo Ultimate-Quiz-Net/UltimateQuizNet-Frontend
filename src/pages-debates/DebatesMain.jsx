@@ -17,10 +17,7 @@ const GetData = () => {
     });
   }, []);
   console.log("data에 값 확인 =>", data);
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c824651d77e3d32401fdb01ff0a5725d19e46f9
+  
   const boardItem = data.map((item) => (
     <DebatesBoardTableRow key={item.debateId}>
       <DebatesBoardTableColumn>{item.debateId}</DebatesBoardTableColumn>

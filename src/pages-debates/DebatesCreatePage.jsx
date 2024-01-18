@@ -24,25 +24,11 @@ const DebatesCreatePage = () => {
   const handleAddButtonClick = async (event) => {
     event.preventDefault();
 
-<<<<<<< HEAD
-    // // FormData 객체 생성
-    // const formDataToSend = new FormData();
-
-    // // 다른 폼 데이터 추가
-    // formDataToSend.append("title", formData.title);
-    // formDataToSend.append("content", formData.content);
-
-    try {
-      console.log("formDataToSend", formData);
-      await api.post("/debates", formData);
-
-=======
-
 
     try {
       console.log("formDataToSend", formData);
       await api.post("/debates", formData, { headers });
->>>>>>> 4c824651d77e3d32401fdb01ff0a5725d19e46f9
+
       setFormData({
         title: "",
         content: "",
