@@ -4,8 +4,7 @@ const BASE_URL = "https://www.quizess.store/api";
 
 export const api = axios.create({
   baseURL: BASE_URL,
-<<<<<<< HEAD
-=======
+
 });
 
 api.interceptors.request.use((api) => {
@@ -17,5 +16,4 @@ api.interceptors.request.use((api) => {
     api.headers.Authorization = `Bearer ${access_token}`;
   }
   return api;
->>>>>>> 3b923ed8f6c321a8ba13de7560849a85ba4fa479
 });
