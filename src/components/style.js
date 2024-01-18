@@ -188,3 +188,28 @@ export const TableRow = styled.tr`
     cursor: pointer;
   }
 `;
+
+// 토론 게시판 상세페이지 스타일
+export const TableDetailBodyStyle = styled.div`
+  width: 60%;
+  margin: 0 auto;
+`;
+
+export const TableDetailItem = styled.div`
+  margin: 10px 0;
+  display: flex;
+`;
+
+export const FirstLabel = styled.label`
+  margin: 10px 0;
+  width: 30%;
+  font-family: Galmuri11, sans-serif;
+  font-weight: bold;
+`;
+
+export const SecondLabel = styled.label`
+  margin: 10px 0;
+  width: 70%;
+  font-family: Galmuri11, sans-serif;
+  font-weight: bold;
+`;

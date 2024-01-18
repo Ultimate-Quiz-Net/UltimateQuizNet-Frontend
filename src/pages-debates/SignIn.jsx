@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as St from "../components/style";
 import logo from "../assets/img/IMG_0286.png";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function SignIn() {
   // 아이디, 비밀번호 input state 관리
   const [userId, idOnChangeHandler] = useInput("");
   const [password, pwOnChangeHandler] = useInput("");
-
+  const [error, setError] = useState("");
   // 아이디 비밀번호 data
   const userData = {
     username: userId,
@@ -32,10 +32,16 @@ function SignIn() {
         return;
       }
       const response = await api.post("/sign-in", userData);
-      const accessToken = response.data.token;
-      Cookies.set("token", accessToken);
+      console.log(Cookies.get("accessToken"));
       console.log("response 확인", response);
-      navigate("/");
+      if (response.data.message === "로그인 성공.") {
+        // 서버 응답이 성공하고, 메시지가 "로그인 성공."일때
+        Cookies.set("accessToken", response.data.data.accessToken);
+        Cookies.set("refreshToken", response.data.data.refreshToken);
+        navigate("/");
+      } else {
+        setError("토큰이 없습니다.");
+      }
     } catch (error) {
       if (error.response) {
         console.log("error response 확인", error);

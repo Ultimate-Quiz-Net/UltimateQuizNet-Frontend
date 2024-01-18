@@ -22,7 +22,7 @@ const Router = () => {
             {/* 메인 페이지 */}
             <Route path="/" element={<Home />} />
             <Route path="debates" element={<DebatesMain />} />
-            <Route path="debates/:id" element={<DebatesDetail />} />
+            <Route path="debates/:debateId" element={<DebatesDetail />} />
             <Route
               path="/quizzess/:quizid/debates"
               element={<DebatesCreatePage />}

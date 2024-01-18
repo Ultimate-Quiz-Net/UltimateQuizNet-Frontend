@@ -17,7 +17,7 @@ function CustomNavbar() {
 
   // 퀴즈 게시판 이동 버튼
   const quizBoardButtonHandler = () => {
-    if (Cookies.get("token")) {
+    if (Cookies.get("accessToken" || "refreshToken")) {
       navigate("/home");
     } else {
       alert("로그인이 필요합니다");
@@ -26,7 +26,7 @@ function CustomNavbar() {
 
   // 토론 게시판 이동 버튼
   const debateBoardButtonHandler = () => {
-    if (Cookies.get("token")) {
+    if (Cookies.get("accessToken" || "refreshToken")) {
       navigate("/debates");
     } else {
       alert("로그인이 필요합니다");
@@ -82,7 +82,7 @@ function CustomNavbar() {
           </ul>
         </div>
         <button onClick={signOutButtonHandler}>
-          {Cookies.get("token") ? "로그아웃" : "로그인"}
+          {Cookies.get("accessToken" || "refreshToken") ? "로그아웃" : "로그인"}
         </button>
       </div>
     </nav>
