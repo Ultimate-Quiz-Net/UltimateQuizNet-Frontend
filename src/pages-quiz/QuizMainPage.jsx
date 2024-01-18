@@ -62,7 +62,7 @@ function QuizMainPage() {
                   </Link>
                   <div className="card-body">
                     <h6 className="card-title">{quiz.title}</h6>
-                    <p className="card-text">{truncateText(quiz.content, 7)}</p>
+                    <p className="card-text">{truncateText(quiz.content, 15)}</p>
                   </div>
                 </div>
               </HoverCard>
