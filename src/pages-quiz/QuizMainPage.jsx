@@ -21,9 +21,9 @@ function QuizMainPage() {
 
   const handleQuizCreateClick = () => {
     // 토큰이 없을 경우 알림 표시
-    if (!headers) {
+    if (!headers.Authorization) {
       alert("로그인이 필요합니다.");
-      navigate("/sign-in");
+      navigate("sign-in");
     } else {
       // 토큰이 있는 경우 게시글 등록 페이지로 이동
       navigate("/quizzes");

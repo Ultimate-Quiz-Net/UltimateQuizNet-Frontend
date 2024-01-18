@@ -15,6 +15,7 @@ function QuizDetailPage() {
     const [comments, setComments] = useState([]); // 댓글 목록을 저장하는 state
     const [newComment, setNewComment] = useState(''); // 새로운 댓글을 저장하는 state
     const { quizId } = useParams();
+    console.log(getAuthHeaders());
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,18 +28,15 @@ function QuizDetailPage() {
 
                 // 해당 퀴즈에 대한 댓글 가져오기
                 const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
-
-                // 이전 댓글과 새로 받은 댓글이 다를 경우에만 업데이트
-                if (JSON.stringify(commentsResponse.data.comments) !== JSON.stringify(comments)) {
-                    setComments(commentsResponse.data.comments);
-                }
+                setComments(commentsResponse.data.comments);
+                
                 console.log(comments);
             } catch (error) {
                 console.error("에러 발생:", error);
             }
         };
         fetchData();
-    }, [quizId, comments]);
+    }, [quizId]);
 
     const navigate = useNavigate();
 
