@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MainTextContainer } from "../shared/styled";
+import { MainTextContainer,StyledLink } from "../shared/styled";
+
 function Home() {
   const textContainerStyle = {
     zIndex: 1,
@@ -17,7 +18,7 @@ function Home() {
           <br />
           지식의 신비로운 세계에 도전하고 다른 참여자들과 소통하세요.
         </h1>
-        <Link to="/home">퀴즈 메인 페이지로 이동하기</Link>
+        <StyledLink to="/home">퀴즈 메인 페이지로 이동하기</StyledLink>
       </div>
     </MainTextContainer>
   );

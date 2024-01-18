@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { QuizDetailBoxStyle } from '../shared/styled';
 import { api } from '../axios/api';
+import { getAuthHeaders } from '../shared/authHeaders';
 
 function QuizDetailPage() {
+    const headers = getAuthHeaders();
     const [quizzes, setQuizzes] = useState([]);
     const [editableQuiz, setEditableQuiz] = useState(null); // 수정할 데이터를 저장하는 state
     const [comments, setComments] = useState([]); // 댓글 목록을 저장하는 state
@@ -16,12 +18,12 @@ function QuizDetailPage() {
                     // 유효한 quizId가 없다면 요청을 보내지 않음
                     return;
                 }
-                const response = await api.get(`/quizzes/${quizId}`);
+                const response = await api.get(`/quizzes/${quizId}`, headers);
                 console.log(response.data);
                 setQuizzes(response.data);
 
                 // 해당 퀴즈에 대한 댓글 가져오기
-                const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`);
+                const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
                 console.log(commentsResponse.data);
                 setComments(commentsResponse.data);
 
@@ -41,7 +43,7 @@ function QuizDetailPage() {
     // 본문 삭제 
     const onRemoveHandler = async () => {
         try {
-            await api.delete(`/quizzes/${quizId}`);
+            await api.delete(`/quizzes/${quizId}`, headers);
             navigate("/home");
         } catch (error) {
             console.error("에러 발생:", error);
@@ -63,7 +65,7 @@ function QuizDetailPage() {
                 title: editableQuiz.title,
                 content: editableQuiz.content,
                 // 이미지는 추후 추가
-            });
+            }, headers);
 
             setQuizzes(prevState => ({ ...prevState, ...editableQuiz })); // 수정된 데이터로 업데이트
             setEditableQuiz(null); // 수정 모드 종료
@@ -78,7 +80,7 @@ function QuizDetailPage() {
         try {
             const response = await api.post(`/quizzes/${quizId}/quizComments`, {
                 content: newComment,
-            });
+            }, headers);
 
             // 새로운 댓글 추가 후 목록 갱신
             setComments([...comments, response.data]);
@@ -90,7 +92,7 @@ function QuizDetailPage() {
     // 댓글 삭제
     const onCommentRemoveHandler = async (commentId) => {
         try {
-            await api.delete(`/quizzes/${quizId}/quizComments/${commentId}`);
+            await api.delete(`/quizzes/${quizId}/quizComments/${commentId}`, headers);
             setComments(prevComments => prevComments.filter(comment => comment.commentId !== commentId));
         } catch (error) {
             console.error("댓글 삭제 에러:", error);
@@ -102,7 +104,7 @@ function QuizDetailPage() {
         try {
             await api.patch(`/quizzes/${quizId}/quizComments/${commentId}`, {
                 content: updatedContent,
-            });
+            }, headers);
 
             setComments(prevComments =>
                 prevComments.map(comment =>
@@ -149,10 +151,10 @@ function QuizDetailPage() {
                 <h3>댓글 목록</h3>
                 <ul>
                     {comments.map(comment => (
-                        <li key={comment.commentId}>
+                        <li key={comment.quizCommentId}>
                             {comment.content}
-                            <button onClick={() => onCommentRemoveHandler(comment.commentId)}>삭제</button>
-                            <button onClick={() => onCommentUpdateHandler(comment.commentId, prompt('댓글 수정', comment.content))}>수정</button>
+                            <button onClick={() => onCommentRemoveHandler(comment.quizCommentId)}>삭제</button>
+                            <button onClick={() => onCommentUpdateHandler(comment.quizCommentId, prompt('댓글 수정', comment.content))}>수정</button>
                         </li>
                     ))}
                 </ul>
