@@ -2,7 +2,6 @@ import styled from "styled-components";
 import "galmuri/dist/galmuri.css";
 import backGroundImg from "../assets/img/IMG_0283.jpg";
 
-
 export const BodyStyle = styled.div`
   margin-bottom: 900px;
 `;
@@ -17,11 +16,11 @@ export const SignInWrapper = styled.section`
   justify-content: center;
   padding: 0px 12px;
   background-image: linear-gradient(
-    45deg,
-    rgba(51, 43, 43, 0.75),
-    rgba(20, 19, 20, 0.61)
-  ),
-  url(${backGroundImg});
+      45deg,
+      rgba(51, 43, 43, 0.75),
+      rgba(20, 19, 20, 0.61)
+    ),
+    url(${backGroundImg});
   background-size: cover;
 `;
 
@@ -214,6 +213,7 @@ export const SecondLabel = styled.label`
   width: 70%;
   font-family: Galmuri11, sans-serif;
   font-weight: bold;
+  color: orange;
 `;
 export const TableDetailButtonStyle = styled.div`
   display: flex;
@@ -234,4 +234,30 @@ export const TableDetailButton = styled.button`
   cursor: pointer;
   color: rgb(255, 255, 255);
   background-color: rgb(254, 83, 31);
+`;
+
+export const EditFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: -50px;
+`;
+
+export const EditLabel = styled.label`
+  font-family: Galmuri11, sans-serif;
+  font-weight: bold;
+  color: orange;
+`;
+
+export const EditInputStyle = styled.input`
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+`;
+
+export const EditTextArea = styled.textarea`
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 200px;
+  height: 100px;
 `;

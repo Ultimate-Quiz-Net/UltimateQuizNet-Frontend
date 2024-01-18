@@ -22,16 +22,9 @@ const Router = () => {
             {/* 메인 페이지 */}
             <Route path="/" element={<Home />} />
             <Route path="debates" element={<DebatesMain />} />
-<<<<<<< HEAD
-            <Route path="debates/:debateId" element={<DebatesDetail />} />
-            <Route path="debates-add" element={<DebatesCreatePage />} />
-=======
-            <Route path="debates/:id" element={<DebatesDetail />} />
-            <Route
-              path="/debates-add"
-              element={<DebatesCreatePage />}
-            />
->>>>>>> 4c824651d77e3d32401fdb01ff0a5725d19e46f9
+            <Route path="debates/:debatesId" element={<DebatesDetail />} />
+            <Route path="/debates-add" element={<DebatesCreatePage />} />
+
             {/* 퀴즈 게시판 페이지 */}
             <Route path="/home" element={<QuizMainPage />} />
             {/* 퀴즈 게시물 등록 페이지 */}
