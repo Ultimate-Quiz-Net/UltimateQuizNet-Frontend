@@ -37,9 +37,6 @@ const QuizCreatePage = () => {
 
 
         try {
-            // Logging: 이미지 파일 및 FormData 확인
-            console.log("imageSrc", imageSrc);
-            console.log("formDataToSend", formDataToSend);
 
             // API 호출
             const headers = getAuthHeaders();

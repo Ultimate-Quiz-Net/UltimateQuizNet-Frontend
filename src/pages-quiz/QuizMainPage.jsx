@@ -33,7 +33,6 @@ function QuizMainPage() {
     const fetchData = async () => {
       try {
         const response = await api.get('/quizzes', headers);
-        console.log(response);
         setQuizzes(response.data.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {

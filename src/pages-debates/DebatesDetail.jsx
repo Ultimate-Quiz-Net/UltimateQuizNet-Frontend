@@ -13,9 +13,9 @@ function DebatesDetail() {
   // debates로 부터 온 id
   const { debatesId } = useParams();
   // 서버로부터 받아온 data
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   // 서버로부터 받아온 댓글
-  const [comments, setComments] = useState({});
+  const [comments, setComments] = useState([]);
   // 새로운 댓글 저장하는 state
   const [newComment, setNewComment] = useState("");
   // 토론 게시글 수정 state
@@ -27,7 +27,7 @@ function DebatesDetail() {
         if (!debatesId) {
           return;
         }
-        const response = await api.get(`/debates/${debatesId}`);
+        const response = await api.get(`/debates/${debatesId}`, headers);
         console.log("response 확인", response.data.data[0]);
         setData(response.data.data[0]);
 
@@ -188,7 +188,7 @@ function DebatesDetail() {
           </St.TableDetailItem>
           <St.TableDetailItem>
             <St.FirstLabel>작성자</St.FirstLabel>
-            <St.SecondLabel>{}</St.SecondLabel>
+            <St.SecondLabel>{ }</St.SecondLabel>
           </St.TableDetailItem>
         </St.TableDetailBodyStyle>
         {/* 수정 모드일 때 입력 폼 표시 */}
@@ -220,7 +220,7 @@ function DebatesDetail() {
           )}
         </St.EditFormWrapper>
 
-        {/* <div>
+        <div>
           <br />
           <h3>댓글 목록</h3>
           {comments ? (
@@ -255,19 +255,20 @@ function DebatesDetail() {
           ) : (
             <p>댓글이 없습니다.</p>
           )}
-        </div> */}
+        </div>
 
-        <form onSubmit={onCommentSubmit}>
-          <label>
-            댓글 작성:
-            <input
-              type="text"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-          </label>
-          <button type="submit">댓글 작성</button>
-        </form>
+          <form onSubmit={onCommentSubmit}>
+            <label>
+              댓글 작성:
+              <input
+                type="text"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+            </label>
+            <button type="submit">댓글 작성</button>
+          </form>
+        
       </div>
     </>
   );

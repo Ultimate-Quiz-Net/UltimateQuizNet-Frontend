@@ -15,7 +15,6 @@ function QuizDetailPage() {
     const [comments, setComments] = useState([]); // 댓글 목록을 저장하는 state
     const [newComment, setNewComment] = useState(''); // 새로운 댓글을 저장하는 state
     const { quizId } = useParams();
-    console.log(getAuthHeaders());
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,9 +27,7 @@ function QuizDetailPage() {
 
                 // 해당 퀴즈에 대한 댓글 가져오기
                 const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
-                setComments(commentsResponse.data.comments);
-                
-                console.log(comments);
+                setComments(prevComments => [...prevComments, ...commentsResponse.data.comments]);
             } catch (error) {
                 console.error("에러 발생:", error);
             }
@@ -146,7 +143,7 @@ function QuizDetailPage() {
                 </div>
             )}
 
-            {!editableQuiz && headers.Authorization && (
+            {!editableQuiz && headers.headers.Authorization && (
                 <>
                     <button onClick={handleUpdateButtonClick}>수정</button>
                     <button onClick={() => onRemoveHandler(quizzes.quizId)}>삭제</button>
@@ -165,7 +162,7 @@ function QuizDetailPage() {
                         {comments.map(comment => (
                             <li key={comment.quizCommentId}>
                                 {comment.content} &nbsp;
-                                {headers.Authorization && (
+                                {headers.headers.Authorization && (
                                     <>
                                         <button onClick={() => onCommentRemoveHandler(comment.quizCommentId)}>삭제</button>
                                         <button onClick={() => onCommentUpdateHandler(comment.quizCommentId, prompt('댓글 수정', comment.content))}>수정</button>
@@ -179,7 +176,7 @@ function QuizDetailPage() {
                 )}
             </div>
 
-            {headers.Authorization && (
+            {headers.headers.Authorization && (
                 <form onSubmit={onCommentSubmit}>
                     <label>
                         댓글 작성:
