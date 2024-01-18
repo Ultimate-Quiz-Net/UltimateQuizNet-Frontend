@@ -43,6 +43,12 @@ const QuizCreatePage = () => {
 
             // API 호출
             const headers = getAuthHeaders();
+
+            if (!headers) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
+            
             await api.post("/quizzes", formDataToSend, {
                 headers: {
                     ...headers,
@@ -98,22 +104,22 @@ const QuizCreatePage = () => {
             <form onSubmit={handleAddButtonClick}>
                 {/* 이미지 업로드 input */}
                 <label htmlFor="profile-upload" />
-                <input type="file" id="profile-upload" accept="image/*" onChange={onChangeImg} />
+                <input type="file" id="profile-upload" accept="image/*" onChange={onChangeImg} style={{ color: 'white' }}/>
 
                 {/* 미리보기 */}
-                <div className="preview">
-                    {imageBase64 && <img src={imageBase64} alt="preview-img" />}
+                <div className="preview" >
+                    {imageBase64 && <img src={imageBase64} alt="preview-img" style={{ maxHeight: '400px', maxWidth: '400px' }}/>}
                 </div>
 
                 {/* 제목 입력란 */}
-                <label>
+                <label style={{ color: 'white' }}>
                     제목:
                     <input type="text" name="title" value={formData.title} onChange={formChangeHandler} />
                 </label>
                 <br />
 
                 {/* 내용 입력란 */}
-                <label>
+                <label style={{ color: 'white' }}>
                     내용:
                     <textarea name="content" value={formData.content} onChange={formChangeHandler} placeholder="최소 5글자 이상의 내용을 입력해주세요" />
                 </label>

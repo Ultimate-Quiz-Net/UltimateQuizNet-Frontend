@@ -68,7 +68,7 @@ function CustomNavbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/debates">
+              <Link className="nav-link active">
                 <StyledButton
                   className="button--winona"
                   data-text="토론 게시판"
