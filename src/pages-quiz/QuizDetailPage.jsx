@@ -148,7 +148,7 @@ function QuizDetailPage() {
                 </div>
             )}
 
-{!editableQuiz && headers.Authorization && (
+            {!editableQuiz && headers.Authorization && (
                 <>
                     <button onClick={handleUpdateButtonClick}>수정</button>
                     <button onClick={() => onRemoveHandler(quizzes.quizId)}>삭제</button>

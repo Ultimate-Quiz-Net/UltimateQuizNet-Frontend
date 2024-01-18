@@ -60,18 +60,17 @@ const debateBoardButtonHandler = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/home">
-
                 <StyledButton className="button--winona" data-text="퀴즈 게시판">
                   <span>퀴즈 게시판</span>
                 </StyledButton>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active">
+              <div className="nav-link active">
                 <StyledButton className="button--winona" data-text="토론 게시판" onClick={debateBoardButtonHandler}>
                   <span>토론 게시판</span>
                 </StyledButton>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
