@@ -7,7 +7,6 @@ import * as St from "../components/style";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { getAuthHeaders } from "../shared/authHeaders";
-
 const GetData = () => {
   const [data, setData] = useState([]);
   const headers = getAuthHeaders();

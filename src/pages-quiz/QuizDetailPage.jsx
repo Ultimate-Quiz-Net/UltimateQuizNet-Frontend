@@ -6,7 +6,7 @@ import { getAuthHeaders } from '../shared/authHeaders';
 
 function QuizDetailPage() {
     const headers = getAuthHeaders();
-    const [quizzes, setQuizzes] = useState([]);
+    const [quizzes, setQuizzes] = useState({});
     const [editableQuiz, setEditableQuiz] = useState(null); // 수정할 데이터를 저장하는 state
     const [comments, setComments] = useState([]); // 댓글 목록을 저장하는 state
     const [newComment, setNewComment] = useState(''); // 새로운 댓글을 저장하는 state
@@ -24,8 +24,7 @@ function QuizDetailPage() {
 
                 // 해당 퀴즈에 대한 댓글 가져오기
                 const commentsResponse = await api.get(`/quizzes/${quizId}/quizComments`, headers);
-                console.log(commentsResponse.data);
-                setComments(commentsResponse.data);
+                setComments(commentsResponse.data.comments);
 
             } catch (error) {
                 console.error("에러 발생:", error);
@@ -82,6 +81,7 @@ function QuizDetailPage() {
                 content: newComment,
             }, headers);
 
+            console.log(response);
             // 새로운 댓글 추가 후 목록 갱신
             setComments([...comments, response.data]);
             setNewComment('');
@@ -93,7 +93,7 @@ function QuizDetailPage() {
     const onCommentRemoveHandler = async (commentId) => {
         try {
             await api.delete(`/quizzes/${quizId}/quizComments/${commentId}`, headers);
-            setComments(prevComments => prevComments.filter(comment => comment.commentId !== commentId));
+            setComments(prevComments => prevComments.filter(comment => comment.quizCommentId  !== commentId));
         } catch (error) {
             console.error("댓글 삭제 에러:", error);
         }
@@ -108,7 +108,7 @@ function QuizDetailPage() {
 
             setComments(prevComments =>
                 prevComments.map(comment =>
-                    comment.commentId === commentId ? { ...comment, content: updatedContent } : comment
+                    comment.quizCommentId  === commentId ? { ...comment, content: updatedContent } : comment
                 )
             );
         } catch (error) {
@@ -146,9 +146,11 @@ function QuizDetailPage() {
             <button onClick={handleMainButtonClick}>
                 main으로 이동
             </button>
-
+            
+            
             <div>
                 <h3>댓글 목록</h3>
+                {comments.length > 0 ? (
                 <ul>
                     {comments.map(comment => (
                         <li key={comment.quizCommentId}>
@@ -158,6 +160,9 @@ function QuizDetailPage() {
                         </li>
                     ))}
                 </ul>
+                ) : (
+                    <p>댓글이 없습니다.</p>
+                )}
             </div>
 
             <form onSubmit={onCommentSubmit}>
@@ -171,6 +176,7 @@ function QuizDetailPage() {
                 </label>
                 <button type="submit">댓글 작성</button>
             </form>
+            
         </QuizDetailBoxStyle>
     );
 }

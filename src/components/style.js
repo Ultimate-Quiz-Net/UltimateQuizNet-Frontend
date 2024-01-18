@@ -2,6 +2,10 @@ import styled from "styled-components";
 import "galmuri/dist/galmuri.css";
 import backGroundImg from "../assets/img/IMG_0283.jpg";
 
+
+export const BodyStyle = styled.div`
+  margin-bottom: 900px;
+`;
 /* 로그인 스타일 */
 export const SignInWrapper = styled.section`
   height: 100vh;
@@ -13,11 +17,11 @@ export const SignInWrapper = styled.section`
   justify-content: center;
   padding: 0px 12px;
   background-image: linear-gradient(
-      45deg,
-      rgba(51, 43, 43, 0.75),
-      rgba(20, 19, 20, 0.61)
-    ),
-    url(${backGroundImg});
+    45deg,
+    rgba(51, 43, 43, 0.75),
+    rgba(20, 19, 20, 0.61)
+  ),
+  url(${backGroundImg});
   background-size: cover;
 `;
 
@@ -134,10 +138,6 @@ export const SignButton = styled.button`
 `;
 
 /* 토론 게시판 스타일 */
-export const BodyStyle = styled.div`
-  margin-bottom: 900px;
-`;
-
 export const TableButtonStyle = styled.div`
   display: flex;
   flex-direction: row-reverse;

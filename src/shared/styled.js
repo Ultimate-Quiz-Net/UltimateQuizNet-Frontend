@@ -4,6 +4,7 @@ import "galmuri/dist/galmuri.css";
 import { Link } from 'react-router-dom';
 
 export const FormWrapper = styled.div`
+
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
@@ -39,6 +40,8 @@ export const FormWrapper = styled.div`
 `;
 
 export const QuizDetailBoxStyle = styled.div`
+
+font-family: "Galmuri11", sans-serif;
   width: 50%;
   margin: 20px auto;
   padding: 20px;
@@ -76,6 +79,7 @@ export const QuizDetailBoxStyle = styled.div`
 `;
 
 export const MainTextContainer = styled.div`
+font-family: "Galmuri11", sans-serif;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -105,6 +109,7 @@ export const MainTextContainer = styled.div`
 
 // 카드 호버 이벤트
 export const HoverCard = styled.div`
+font-family: "Galmuri11", sans-serif;
 width: 100%;
   height: 100%;
   border-radius: 8px;
@@ -128,6 +133,7 @@ const ShinyBtn1Animation = keyframes`
 `;
 
 export const Btn11 = styled.button`
+font-family: "Galmuri11", sans-serif;
   border: none;
   background: rgb(251, 33, 117);
   background: linear-gradient(0deg, rgba(251, 33, 117, 1) 0%, rgba(234, 76, 137, 1) 100%);
@@ -164,6 +170,7 @@ export const Btn11 = styled.button`
 
 
 export const StyledLink = styled(Link)`
+font-family: "Galmuri11", sans-serif;
   background: linear-gradient(0deg, rgba(2,126,251,1) 0%, rgba(129, 5, 240, 1) 100%);
   border: none;
   position: relative;
@@ -278,6 +285,7 @@ const winonaButtonStyles = css`
 
 // Styled components
 export const StyledButton = styled.button`
+font-family: "Galmuri11", sans-serif;
   ${buttonStyles}
 
   /* Apply Winona Button Styles */
@@ -287,6 +295,7 @@ export const StyledButton = styled.button`
 `;
 
 export const LoginButton = styled.button`
+font-family: "Galmuri11", sans-serif;
   width: 130px;
   height: 40px;
   padding: 10px 25px;
