@@ -17,7 +17,10 @@ const GetData = () => {
     });
   }, []);
   console.log("data에 값 확인 =>", data);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c824651d77e3d32401fdb01ff0a5725d19e46f9
   const boardItem = data.map((item) => (
     <DebatesBoardTableRow key={item.debateId}>
       <DebatesBoardTableColumn>{item.debateId}</DebatesBoardTableColumn>
@@ -30,16 +33,13 @@ const GetData = () => {
   ));
   return boardItem;
 };
-
 function DebatesMain() {
   const board = GetData();
   console.log("board 확인", board);
   const navigate = useNavigate();
-
   const addDebatesButtonHandler = () => {
     navigate("/debates-add");
   };
-
   return (
     <>
       <St.BodyStyle>
@@ -55,5 +55,4 @@ function DebatesMain() {
     </>
   );
 }
-
 export default DebatesMain;
