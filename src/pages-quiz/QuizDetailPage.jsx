@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { QuizDetailBoxStyle } from '../shared/styled';
 import { api } from '../axios/api';
 import { getAuthHeaders } from '../shared/authHeaders';
+import Cookies from "js-cookie";
 const inputStyle = {
     border: '0',
     borderRadius: '3px',
@@ -143,7 +144,7 @@ function QuizDetailPage() {
                 </div>
             )}
 
-            {!editableQuiz && headers.headers.Authorization && (
+            {!editableQuiz && Cookies.get("accessToken") && (
                 <>
                     <button onClick={handleUpdateButtonClick}>수정</button>
                     <button onClick={() => onRemoveHandler(quizzes.quizId)}>삭제</button>
@@ -162,7 +163,7 @@ function QuizDetailPage() {
                         {comments.map(comment => (
                             <li key={comment.quizCommentId}>
                                 {comment.content} &nbsp;
-                                {headers.headers.Authorization && (
+                                {Cookies.get("accessToken") && (
                                     <>
                                         <button onClick={() => onCommentRemoveHandler(comment.quizCommentId)}>삭제</button>
                                         <button onClick={() => onCommentUpdateHandler(comment.quizCommentId, prompt('댓글 수정', comment.content))}>수정</button>
@@ -176,7 +177,7 @@ function QuizDetailPage() {
                 )}
             </div>
 
-            {headers.headers.Authorization && (
+            {Cookies.get("accessToken") && (
                 <form onSubmit={onCommentSubmit}>
                     <label>
                         댓글 작성:

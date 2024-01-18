@@ -4,7 +4,7 @@ import { api } from '../axios/api';
 import { HoverCard } from '../shared/styled';
 import { Btn11 } from '../shared/styled';
 import { getAuthHeaders } from '../shared/authHeaders';
-
+import Cookies from "js-cookie";
 
 // 텍스트 일정이상 넘어가면 ..으로 보이게 잘라줌
 function truncateText(text, maxLength) {
@@ -21,7 +21,7 @@ function QuizMainPage() {
 
   const handleQuizCreateClick = () => {
     // 토큰이 없을 경우 알림 표시
-    if (!headers.headers.Authorization) {
+    if (!Cookies.get("accessToken")) {
       alert("로그인이 필요합니다.");
       navigate("/sign-in");
     } else {
